@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TacheController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('bienvenue');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/apropos', [HomeController::class, 'apropos']);
+Route::get('/contact', [HomeController::class, 'contact']);
+Route::get('/taches',[TacheController::class, 'index']);
+Route::get('/taches/{id}', [TacheController::class, 'show'])->where('id', '[0-9]+');
+Route::get('/taches/filtre', [TacheController::class, 'filtre']);
